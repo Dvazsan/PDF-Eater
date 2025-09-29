@@ -1,0 +1,10 @@
+<Window x:Class="PdfEater.LoadingWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:local="clr-namespace:PdfEater"
+		ContentRendered="Window_ContentRendered"
+		Title="Saving PDF" Height="100" Width="300">
+	<Grid Margin="20">
+		<ProgressBar x:Name="progressBar" HorizontalAlignment="Stretch" Minimum="0" Maximum="100" Height="20" Orientation="horizontal" VerticalAlignment="Center"/>
+	</Grid>
+</Window>

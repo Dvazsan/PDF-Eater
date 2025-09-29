@@ -1,0 +1,22 @@
+<Grid
+	x:Class="PdfEater.DrawingCanvas"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="clr-namespace:PdfEater">
+
+	<Canvas x:Name="overlayCanvas" Background="Transparent" Height="Auto" Width="Auto"/>
+	<InkCanvas
+		Background="Transparent"
+		Name="inkCanvas"
+		EditingMode="Ink"
+		PreviewTouchDown="InkCanvas_TouchAction"
+		PreviewTouchMove="InkCanvas_TouchAction"
+		PreviewTouchUp="InkCanvas_TouchAction"
+		StylusDown="InkCanvas_StylusDown"
+		StylusOutOfRange="InkCanvas_StylusOutOfRange"
+		StylusMove="InkCanvas_StylusMove"
+		PreviewMouseLeftButtonDown="InkCanvas_MouseDown"
+		MouseMove="InkCanvas_MouseMove"
+		MouseUp="InkCanvas_MouseUp"
+		Height="Auto" Width="Auto"/>
+</Grid>
