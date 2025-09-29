@@ -29,7 +29,8 @@ Currently all annotations are *baked into the PDF* that you choose to save to.
 
 Currently no releases available, but you can compile it with the following command (if you have .NET installed):
 ```nu-script
-dotnet publish -r win-x64 --self-contained true
+dotnet publish
 ```
+The resulting binary will end up here: `./bin/Release/net9.0-windows/win-x64/publish/PDFEater.exe`!
 Also seems to work smoothly on Linux using Wine!
 
