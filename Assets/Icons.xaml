@@ -1,0 +1,131 @@
+<?xml version="1.0" ?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <DrawingGroup x:Key="floppy_disk_duotone_xaml">
+        <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0.0,0.0,256.0,256.0"/>
+        </DrawingGroup.ClipGeometry>
+        <DrawingGroup Opacity="0.2">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 216 83.31 V 208 a 8 8 0 0 1 -8 8 H 176 V 152 a 8 8 0 0 0 -8 -8 H 88 a 8 8 0 0 0 -8 8 v 64 H 48 a 8 8 0 0 1 -8 -8 V 48 a 8 8 0 0 1 8 -8 H 172.69 a 8 8 0 0 1 5.65 2.34 l 35.32 35.32 A 8 8 0 0 1 216 83.31 Z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <GeometryDrawing Brush="#ff000000">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 219.31 72 L 184 36.69 A 15.86 15.86 0 0 0 172.69 32 H 48 A 16 16 0 0 0 32 48 V 208 a 16 16 0 0 0 16 16 H 208 a 16 16 0 0 0 16 -16 V 83.31 A 15.86 15.86 0 0 0 219.31 72 Z M 168 208 H 88 V 152 h 80 Z m 40 0 H 184 V 152 a 16 16 0 0 0 -16 -16 H 88 a 16 16 0 0 0 -16 16 v 56 H 48 V 48 H 172.69 L 208 83.31 Z M 160 72 a 8 8 0 0 1 -8 8 H 96 a 8 8 0 0 1 0 -16 h 56 A 8 8 0 0 1 160 72 Z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+    </DrawingGroup>
+    <DrawingImage Drawing="{StaticResource floppy_disk_duotone_xaml}" x:Key="svg_save_icon"/>
+    <DrawingGroup x:Key="file_duotone_xaml">
+        <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0.0,0.0,256.0,256.0"/>
+        </DrawingGroup.ClipGeometry>
+        <DrawingGroup Opacity="0.2">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 208 88 H 152 V 32 Z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <GeometryDrawing Brush="#ff000000">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 213.66 82.34 l -56 -56 A 8 8 0 0 0 152 24 H 56 A 16 16 0 0 0 40 40 V 216 a 16 16 0 0 0 16 16 H 200 a 16 16 0 0 0 16 -16 V 88 A 8 8 0 0 0 213.66 82.34 Z M 160 51.31 L 188.69 80 H 160 Z M 200 216 H 56 V 40 h 88 V 88 a 8 8 0 0 0 8 8 h 48 V 216 Z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+    </DrawingGroup>
+    <DrawingImage Drawing="{StaticResource file_duotone_xaml}" x:Key="svg_file_icon"/>
+    <DrawingGroup x:Key="palette_duotone_xaml">
+        <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0.0,0.0,256.0,256.0"/>
+        </DrawingGroup.ClipGeometry>
+        <DrawingGroup Opacity="0.2">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 224 127.17 a 96.48 96.48 0 0 1 -2.39 22.18 A 24 24 0 0 1 198.21 168 H 152 a 24 24 0 0 0 -24 24 a 24 24 0 0 1 -32 22.61 C 58.73 201.44 32 169.81 32 128 a 96 96 0 0 1 95 -96 C 179.84 31.47 223.55 74.35 224 127.17 Z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <GeometryDrawing Brush="#ff000000">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 200.77 53.89 A 103.27 103.27 0 0 0 128 24 h -1.07 A 104 104 0 0 0 24 128 c 0 43 26.58 79.06 69.36 94.17 A 32 32 0 0 0 136 192 a 16 16 0 0 1 16 -16 h 46.21 a 31.81 31.81 0 0 0 31.2 -24.88 a 104.43 104.43 0 0 0 2.59 -24 A 103.28 103.28 0 0 0 200.77 53.89 Z m 13 93.71 A 15.89 15.89 0 0 1 198.21 160 H 152 a 32 32 0 0 0 -32 32 a 16 16 0 0 1 -21.31 15.07 C 62.49 194.3 40 164 40 128 a 88 88 0 0 1 87.09 -88 h 0.9 a 88.35 88.35 0 0 1 88 87.25 A 88.86 88.86 0 0 1 213.81 147.6 Z M 140 76 a 12 12 0 1 1 -12 -12 A 12 12 0 0 1 140 76 Z M 96 100 A 12 12 0 1 1 84 88 A 12 12 0 0 1 96 100 Z m 0 56 a 12 12 0 1 1 -12 -12 A 12 12 0 0 1 96 156 Z m 88 -56 a 12 12 0 1 1 -12 -12 A 12 12 0 0 1 184 100 Z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+    </DrawingGroup>
+    <DrawingImage Drawing="{StaticResource palette_duotone_xaml}" x:Key="svg_palette_icon"/>
+    <DrawingGroup x:Key="pencil_line_duotone_xaml">
+        <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0.0,0.0,256.0,256.0"/>
+        </DrawingGroup.ClipGeometry>
+        <DrawingGroup Opacity="0.2">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 221.66 90.34 L 192 120 L 136 64 l 29.66 -29.66 a 8 8 0 0 1 11.31 0 L 221.66 79 A 8 8 0 0 1 221.66 90.34 Z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <GeometryDrawing Brush="#ff000000">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 227.32 73.37 L 182.63 28.69 a 16 16 0 0 0 -22.63 0 L 36.69 152 A 15.86 15.86 0 0 0 32 163.31 V 208 a 16 16 0 0 0 16 16 H 216 a 8 8 0 0 0 0 -16 H 115.32 l 112 -112 A 16 16 0 0 0 227.32 73.37 Z M 79.32 188 L 164 103.31 L 180.69 120 L 96 204.69 Z M 68 176.69 L 51.31 160 L 136 75.31 L 152.69 92 Z m -20 2.62 L 76.69 208 H 48 Z m 144 -70.62 L 147.32 64 l 24 -24 L 216 84.69 Z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+    </DrawingGroup>
+    <DrawingImage Drawing="{StaticResource pencil_line_duotone_xaml}" x:Key="svg_pencil_line_icon"/>
+    <DrawingGroup x:Key="ruler_duotone_xaml">
+        <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0.0,0.0,256.0,256.0"/>
+        </DrawingGroup.ClipGeometry>
+        <DrawingGroup Opacity="0.2">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 229.66 90.34 L 90.34 229.66 a 8 8 0 0 1 -11.31 0 L 26.34 177 a 8 8 0 0 1 0 -11.31 L 165.66 26.34 a 8 8 0 0 1 11.31 0 L 229.66 79 A 8 8 0 0 1 229.66 90.34 Z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <GeometryDrawing Brush="#ff000000">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 235.32 73.37 L 182.63 20.69 a 16 16 0 0 0 -22.63 0 L 20.68 160 a 16 16 0 0 0 0 22.63 l 52.69 52.68 a 16 16 0 0 0 22.63 0 L 235.32 96 A 16 16 0 0 0 235.32 73.37 Z M 84.68 224 L 32 171.31 l 32 -32 l 26.34 26.35 a 8 8 0 0 0 11.32 -11.32 L 75.31 128 L 96 107.31 l 26.34 26.35 a 8 8 0 0 0 11.32 -11.32 L 107.31 96 L 128 75.31 l 26.34 26.35 a 8 8 0 0 0 11.32 -11.32 L 139.31 64 l 32 -32 L 224 84.69 Z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+    </DrawingGroup>
+    <DrawingImage Drawing="{StaticResource ruler_duotone_xaml}" x:Key="svg_ruler_icon"/>
+   <DrawingGroup x:Key="ruler_wavy_duotone_xaml">
+      <DrawingGroup.ClipGeometry>
+         <RectangleGeometry Rect="0.0,0.0,224.01517,223.99516"/>
+      </DrawingGroup.ClipGeometry>
+      <DrawingGroup Transform="1.0,0.0,0.0,1.0,-15.992417,-16.002416">
+         <DrawingGroup Opacity="0.2">
+            <GeometryDrawing Brush="#ff000000">
+               <GeometryDrawing.Geometry>
+                  <PathGeometry Figures="M 229.66 90.34 L 90.34 229.66 a 8 8 0 0 1 -11.31 0 L 26.34 177 a 8 8 0 0 1 0 -11.31 L 165.66 26.34 a 8 8 0 0 1 11.31 0 L 229.66 79 a 8 8 0 0 1 0 11.34 z" FillRule="Nonzero"/>
+               </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+         </DrawingGroup>
+         <GeometryDrawing Brush="#ff000000">
+            <GeometryDrawing.Geometry>
+               <PathGeometry Figures="M 235.32 73.37 L 182.63 20.69 c -6.24868 -6.25011 -16.3813 -6.25011 -22.63 0 c -5.33333 5.33455 -15.5503 5.85066 -21.6473 11.8973 c -6.74045 6.68485 -8.21587 17.9637 -14.9288 24.6761 c -5.706 5.70559 -16.622 9.08752 -22.328 14.7931 c -5.1466 5.14623 -4.14808 13.7643 -10.2298 17.7623 c -7.3308 4.81918 -13.3958 6.7904 -20.7266 11.6096 c -6.08167 3.99801 -6.34891 15.4641 -11.4955 20.6103 c -7.45883 7.4583 -21.7099 11.0107 -29.1687 18.469 C 24.2794 145.703 26.0146 154.667 20.68 160 c -6.25011 6.24868 -6.25011 16.3813 0 22.63 l 52.69 52.68 c 6.24868 6.25011 16.3813 6.25011 22.63 0 L 235.32 96 c 6.25011 -6.24868 6.25011 -16.3813 0 -22.63 z M 84.68 224 L 32 171.31 c 0 0 3.27785 -14.015 8.34215 -19.0402 C 46.8057 145.856 64 139.31 64 139.31 l 26.34 26.35 c 3.12602 3.12542 8.19373 3.12517 11.3194 -0.00055 c 3.12572 -3.12572 3.12597 -8.19343 0.00055 -11.3194 L 75.31 128 c 0 0 2.87606 -11.7183 6.70193 -15.8178 C 85.2423 108.721 96 107.31 96 107.31 l 26.34 26.35 c 3.12602 3.12542 8.19373 3.12517 11.3194 -0.00055 c 3.12572 -3.12572 3.12597 -8.19343 0.00055 -11.3194 L 109.842 98.2151 c 0 0 -2.61513 -10.4944 2.11874 -14.399 C 115.899 80.5676 128 75.31 128 75.31 l 26.34 26.35 c 3.12602 3.12542 8.19373 3.12517 11.3194 -0.00055 c 3.12572 -3.12572 3.12597 -8.19343 0.00055 -11.3194 L 139.31 64 c 0 0 5.03153 -14.6198 9.57014 -19.3189 C 154.858 38.4921 171.31 32 171.31 32 L 224 84.69 Z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+         </GeometryDrawing>
+      </DrawingGroup>
+   </DrawingGroup>
+   <DrawingImage Drawing="{StaticResource ruler_wavy_duotone_xaml}" x:Key="svg_ruler_wavy_icon"/>
+      <DrawingGroup x:Key="list_duotone_xaml">
+      <DrawingGroup.ClipGeometry>
+         <RectangleGeometry Rect="0.0,0.0,256.0,256.0"/>
+      </DrawingGroup.ClipGeometry>
+      <DrawingGroup Opacity="0.2">
+         <GeometryDrawing Brush="#ff000000">
+            <GeometryDrawing.Geometry>
+               <PathGeometry Figures="M 216 64 V 192 H 40 V 64 Z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+         </GeometryDrawing>
+      </DrawingGroup>
+      <GeometryDrawing Brush="#ff000000">
+         <GeometryDrawing.Geometry>
+            <PathGeometry Figures="M 224 128 a 8 8 0 0 1 -8 8 H 40 a 8 8 0 0 1 0 -16 H 216 A 8 8 0 0 1 224 128 Z M 40 72 H 216 a 8 8 0 0 0 0 -16 H 40 a 8 8 0 0 0 0 16 Z M 216 184 H 40 a 8 8 0 0 0 0 16 H 216 a 8 8 0 0 0 0 -16 Z" FillRule="Nonzero"/>
+         </GeometryDrawing.Geometry>
+      </GeometryDrawing>
+   </DrawingGroup>
+   <DrawingImage Drawing="{StaticResource list_duotone_xaml}" x:Key="svg_list_icon"/>
+</ResourceDictionary>

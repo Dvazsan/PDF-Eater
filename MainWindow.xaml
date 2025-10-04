@@ -3,6 +3,9 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:local="clr-namespace:PdfEater"
 		Title="PDF Eater" Height="600" Width="800">
+	<Window.Resources>
+		<ResourceDictionary Source="./Assets/Icons.xaml"/>
+	</Window.Resources>
 	<Grid>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" PanningMode="Both">
 			<StackPanel x:Name="PagesPanel" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" PreviewMouseWheel="PagesPanel_OnMouseWheel">
@@ -18,13 +21,13 @@
 				Margin="10"
 				Padding="10">
 			<StackPanel>
-				<Button x:Name="BtnOpenfile" Content="Open" Margin="0,2" Click="BtnOpenfile_Click"/>
-				<Button x:Name="BtnSave" Content="Save" Margin="0,2" Click="BtnSave_Click"/>
-				<Button x:Name="BtnFreehand" Content="Freehand" Margin="0,2" Click="BtnFreehand_Click"/>
-				<Button x:Name="BtnRule" Content="Ruler" Margin="0,2" Click="BtnRule_Click"/>
-				<Button x:Name="BtnRuleWavy" Content="Wavy ruler" Margin="0,2" Click="BtnRuleWavy_Click"/>
-				<Button x:Name="BtnColors" Content="Color" Margin="0,2" Click="BtnColor_Click"/>
-				<Button x:Name="BtnThickness" Content="Thickness" Margin="0,2" Click="BtnThickness_Click"/>
+				<Button x:Name="BtnOpenfile" Margin="0,2" Click="BtnOpenfile_Click" Width="40" Height="40"><Image Source="{StaticResource svg_file_icon}"/></Button>
+				<Button x:Name="BtnSave" Margin="0,2" Click="BtnSave_Click" Width="40" Height="40"><Image Source="{StaticResource svg_save_icon}"/></Button>
+				<Button x:Name="BtnFreehand" Margin="0,2" Click="BtnFreehand_Click" Width="40" Height="40"><Image Source="{StaticResource svg_pencil_line_icon}"/></Button>
+				<Button x:Name="BtnRule" Margin="0,2" Click="BtnRule_Click" Width="40" Height="40"><Image Source="{StaticResource svg_ruler_icon}"/></Button>
+				<Button x:Name="BtnRuleWavy" Margin="0,2" Click="BtnRuleWavy_Click" Width="40" Height="40"><Image Source="{StaticResource svg_ruler_wavy_icon}"/></Button>
+				<Button x:Name="BtnColors" Margin="0,2" Click="BtnColor_Click" Width="40" Height="40"><Image Source="{StaticResource svg_palette_icon}"/></Button>
+				<Button x:Name="BtnThickness" Margin="0,2" Click="BtnThickness_Click" Width="40" Height="40"><Image Source="{StaticResource svg_list_icon}"/></Button>
 			</StackPanel>
 		</Border>
 		<StackPanel x:Name="LoadingMessage" VerticalAlignment="Top" HorizontalAlignment="Left" Background="White" Margin="4" Visibility="Collapsed">
