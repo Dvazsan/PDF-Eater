@@ -25,12 +25,17 @@ Also does things like show a progress bar while it's saving your work, etc.
 
 Currently all annotations are *baked into the PDF* that you choose to save to.
 
+### Install
+
+Head over to the [releases page](https://github.com/Ash-Olorenshaw/PDF-Eater/releases) and pick our what release you want. Unzip and run!
+
+Currently only on Windows (since WPF), but runs beautifully with Wine on Linux!
+
 ### Compile
 
-Currently no releases available, but you can compile it with the following command (if you have .NET installed):
+Compile is as simple as (if you have .NET installed):
 ```nu-script
 dotnet publish
 ```
-The resulting binary will end up here: `./bin/Release/net9.0-windows/win-x64/publish/PDFEater.exe`!
-Also seems to work smoothly on Linux using Wine!
+The resulting binary will end up here: `./bin/Release/net9.0-windows/win-x64/publish/PDFEater.exe`
 
