@@ -16,6 +16,10 @@ using ControlsImage = System.Windows.Controls.Image;
 using DrawingImage = System.Drawing.Image;
 using SharpDoc = PdfSharp.Pdf.PdfDocument;
 using PdfiumDoc = PdfiumViewer.PdfDocument;
+using Brushes = System.Windows.Media.Brushes;
+using ColorConverter = System.Windows.Media.ColorConverter;
+using Color = System.Windows.Media.Color;
+using ImageFormat = System.Drawing.Imaging.ImageFormat;
 
 namespace PdfEater;
 
@@ -31,6 +35,7 @@ public partial class MainWindow : Window {
 	public MainWindow() {
 		InitializeComponent();
 		LoadSettings();
+		PagesPanelScrollViewer.CanContentScroll = false;
 		FlyoutCreator.CreateColorFlyout(ref colorPopup);
 		FlyoutCreator.CreateThicknessFlyout(ref thicknessPopup);
 		Closing += OnClose;
@@ -64,7 +69,7 @@ public partial class MainWindow : Window {
 		string[] loadedColors = (string[]) Globals.settings.GetSetting("COLORS", defaultColors);
 		Globals.colorOptions.Clear();
 		foreach (string loadedColor in loadedColors) {
-			Globals.colorOptions.Add((System.Windows.Media.Color) System.Windows.Media.ColorConverter.ConvertFromString(loadedColor));
+			Globals.colorOptions.Add((Color) ColorConverter.ConvertFromString(loadedColor));
 		}
 	}
 
@@ -154,6 +159,71 @@ public partial class MainWindow : Window {
 		}
 	}
 
+	private void BtnPageNumMinus_Click(object sender, RoutedEventArgs e) {
+		int newPage = 1;
+		Int32.TryParse(TextBoxPageNum.Text, out newPage);
+		if (newPage > 1)
+			ScrollToSelectedPage(--newPage);
+		TextBoxPageNum.Text = newPage.ToString();
+	}
+
+	private void BtnPageNumPlus_Click(object sender, RoutedEventArgs e) {
+		int newPage = 1;
+		Int32.TryParse(TextBoxPageNum.Text, out newPage);
+		if (newPage + 1 < pageContainers.Count)
+			ScrollToSelectedPage(++newPage);
+		TextBoxPageNum.Text = newPage.ToString();
+	}
+
+	private void TextBoxPageNum_KeyUp(object sender, KeyEventArgs e) {
+		int newPage = 1;
+		Int32.TryParse(TextBoxPageNum.Text, out newPage);
+		ScrollToSelectedPage(newPage);
+		TextBoxPageNum.Text = newPage.ToString();
+	}
+
+	private void PagesPanelScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e) {
+		int? currentGridId = null;
+		foreach (KeyValuePair<int, Grid> containerPair in pageContainers) {
+			Grid pageGrid = containerPair.Value;
+			if (!pageGrid.IsVisible)
+				continue;
+
+			Rect bounds = pageGrid.TransformToAncestor(this).TransformBounds(new Rect(0, 0, pageGrid.ActualWidth, pageGrid.ActualHeight));
+			Rect rect = new Rect(0, 0, this.ActualWidth, this.ActualHeight);
+
+			if (rect.Contains(bounds.TopLeft)) {
+				currentGridId = containerPair.Key;
+				break;
+			}
+		}
+
+		if (currentGridId != null)
+			TextBoxPageNum.Text = (currentGridId + 1).ToString();
+	}
+
+	private void ScrollToSelectedPage(int selectedPage) {
+		bool Success = true;
+
+		try {
+			if (selectedPage > 0 && selectedPage <= pageContainers.Count) {
+				Grid targetPageGrid = pageContainers[selectedPage - 1];
+				Rect bounds = targetPageGrid.TransformToAncestor(PagesPanel).TransformBounds(new Rect(0, 0, targetPageGrid.ActualWidth, targetPageGrid.ActualHeight));
+				PagesPanelScrollViewer.ScrollToVerticalOffset(bounds.Top * PagesPanelZoomTransform.ScaleX);
+			}
+			else 
+				Success = false;
+		}
+		catch {
+			Success = false;
+		}
+
+		if (!Success)
+			TextBoxPageNum.BorderBrush = Brushes.Red;
+		else
+			TextBoxPageNum.ClearValue(TextBox.StyleProperty);
+	}
+
 	private void ClearPDF() {
 		PagesPanel.Children.Clear();
 		pageContainers.Clear();
@@ -234,7 +304,7 @@ public partial class MainWindow : Window {
 
 	private BitmapImage BitmapToImageSource(Bitmap bitmap) {
 		using (MemoryStream memory = new MemoryStream()) {
-			bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Png);
+			bitmap.Save(memory, ImageFormat.Png);
 			memory.Position = 0;
 
 			BitmapImage bitmapImage = new BitmapImage();

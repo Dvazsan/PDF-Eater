@@ -7,7 +7,7 @@
 		<ResourceDictionary Source="./Assets/Icons.xaml"/>
 	</Window.Resources>
 	<Grid>
-		<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" PanningMode="Both">
+		<ScrollViewer x:Name="PagesPanelScrollViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" PanningMode="Both" ScrollChanged="PagesPanelScrollViewer_ScrollChanged">
 			<StackPanel x:Name="PagesPanel" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" PreviewMouseWheel="PagesPanel_OnMouseWheel">
 				<StackPanel.LayoutTransform>
 					<ScaleTransform x:Name="PagesPanelZoomTransform" ScaleX="1" ScaleY="1"/>
@@ -30,6 +30,11 @@
 				<Button x:Name="BtnThickness" Margin="0,2" Click="BtnThickness_Click" Width="40" Height="40"><Image Source="{StaticResource svg_list_icon}"/></Button>
 			</StackPanel>
 		</Border>
+		<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+			<Button x:Name="BtnPageNumMinus" Margin="0,2" Click="BtnPageNumMinus_Click" Content=" - "/>
+			<TextBox x:Name="TextBoxPageNum" KeyUp="TextBoxPageNum_KeyUp" Text="1" Width="40"/>
+			<Button x:Name="BtnPageNumPlus" Margin="0,2" Click="BtnPageNumPlus_Click" Content=" + "/>
+		</StackPanel>
 		<StackPanel x:Name="LoadingMessage" VerticalAlignment="Top" HorizontalAlignment="Left" Background="White" Margin="4" Visibility="Collapsed">
 			<TextBlock FontSize="18" FontWeight="Bold" FontStyle="Italic">
 				Loading file...
