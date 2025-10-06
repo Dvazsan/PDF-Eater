@@ -282,23 +282,18 @@ public partial class MainWindow : Window {
 				saveProgress.ShowDialog();
 				pdfDoc?.Dispose();
 
-				try {
-					sharpPdfDoc.Save(out_path);
-					pdfDoc = PdfiumDoc.Load(out_path);
+				sharpPdfDoc.Save(out_path);
+				pdfDoc = PdfiumDoc.Load(out_path);
 
-					if (sharpPdfDocStream != null) 
-						sharpPdfDocStream.Dispose();
+				if (sharpPdfDocStream != null) 
+					sharpPdfDocStream.Dispose();
 
-					if (sharpPdfDoc != null) 
-						sharpPdfDoc.Close();
+				if (sharpPdfDoc != null) 
+					sharpPdfDoc.Close();
 
-					byte[] pdfBytes = File.ReadAllBytes(currentFile);
-					sharpPdfDocStream = new MemoryStream(pdfBytes);
-					sharpPdfDoc = PdfReader.Open(sharpPdfDocStream, PdfDocumentOpenMode.Modify);
-				}
-				catch (Exception error) {
-					Error.RaiseError($"ERROR WITH REOPENING PDF: \n{ error.Message }", "Error with opening PDF");
-				}
+				byte[] pdfBytes = File.ReadAllBytes(currentFile);
+				sharpPdfDocStream = new MemoryStream(pdfBytes);
+				sharpPdfDoc = PdfReader.Open(sharpPdfDocStream, PdfDocumentOpenMode.Modify);
 
 				Globals.lastSave = DateTime.Now;
 			}

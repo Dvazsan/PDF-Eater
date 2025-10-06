@@ -154,21 +154,6 @@ public partial class DrawingCanvas : Grid {
 	}
 
 	public MemoryStream RenderToBitmap() {
-		//DrawingCanvas selfCopy = (DrawingCanvas) XamlReader.Load(XmlReader.Create(new StringReader(XamlWriter.Save(this))));
-		//((StackPanel) this.Parent).Children.Add(selfCopy);
-		/*this.Arrange(new Rect(new Size(this.ActualWidth, this.ActualHeight)));
-		this.UpdateLayout();
-
-		RenderTargetBitmap renderBitmap = new RenderTargetBitmap(
-			(int) this.ActualWidth,
-			(int) this.ActualHeight,
-			96,                  
-			96,                  
-			PixelFormats.Pbgra32
-		);
-
-		renderBitmap.Render(this);*/
-
 		Rect bounds = VisualTreeHelper.GetDescendantBounds(this);
 		double dpi = 96.0;
 
@@ -186,7 +171,6 @@ public partial class DrawingCanvas : Grid {
 		}
 		rtb.Render(dv);
 
-		//((StackPanel) this.Parent).Children.Remove(selfCopy);
 		MemoryStream stream = new MemoryStream();
 		PngBitmapEncoder encoder = new PngBitmapEncoder();
 		encoder.Frames.Add(BitmapFrame.Create(rtb));
