@@ -26,6 +26,7 @@ namespace PdfEater;
 public partial class MainWindow : Window {
 	private PdfiumDoc? pdfDoc;
 	private SharpDoc? sharpPdfDoc;
+	private MemoryStream? sharpPdfDocStream;
 	private readonly Dictionary<int, Grid> pageContainers = new();
 	private readonly HashSet<int> renderedPages = new();
 	private string currentFile = "";
@@ -52,6 +53,12 @@ public partial class MainWindow : Window {
 				e.Cancel = true;
 			}
 		}
+
+		if (sharpPdfDocStream != null) 
+			sharpPdfDocStream.Dispose();
+
+		if (sharpPdfDoc != null) 
+			sharpPdfDoc.Close();
 	}
 
 	private void PagesPanel_OnMouseWheel(object sender, MouseWheelEventArgs e) {
@@ -87,7 +94,16 @@ public partial class MainWindow : Window {
 		}
 
 		pdfDoc = PdfiumDoc.Load(path);
-		sharpPdfDoc = PdfReader.Open(currentFile, PdfDocumentOpenMode.Modify);
+
+		if (sharpPdfDocStream != null) 
+			sharpPdfDocStream.Dispose();
+
+		if (sharpPdfDoc != null) 
+			sharpPdfDoc.Close();
+
+		byte[] pdfBytes = File.ReadAllBytes(currentFile);
+        sharpPdfDocStream = new MemoryStream(pdfBytes);
+		sharpPdfDoc = PdfReader.Open(sharpPdfDocStream, PdfDocumentOpenMode.Modify);
 
 		for (int i = 0; i < pdfDoc.PageCount; i++) {
 			Grid? pageGrid = null;
@@ -240,35 +256,58 @@ public partial class MainWindow : Window {
 			Filter = "PDF Files (*.pdf)|*.pdf|All Files (*.*)|*.*"
 		};
 
-		if (saveDialog.ShowDialog() == true) {
-			String out_path = saveDialog.FileName;
+		try {
+			if (saveDialog.ShowDialog() == true) {
+				String out_path = saveDialog.FileName;
 
-			void SavePDFPage(int index) {
-				PdfPage? SharpPage = null;
-				MemoryStream? drawingCanvasBmp = null;
+				void SavePDFPage(int index) {
+					PdfPage? SharpPage = null;
+					MemoryStream? drawingCanvasBmp = null;
 
-				this.Dispatcher.Invoke((Action)(() => {
-					drawingCanvasBmp = ((DrawingCanvas) pageContainers[index].Children[1]).RenderToBitmap();
-					SharpPage = sharpPdfDoc.Pages[index];
-				}));
+					this.Dispatcher.Invoke((Action)(() => {
+						drawingCanvasBmp = ((DrawingCanvas) pageContainers[index].Children[1]).RenderToBitmap();
+						SharpPage = sharpPdfDoc.Pages[index];
 
-				if (drawingCanvasBmp is not null && SharpPage is not null) {
-					using (XGraphics PageGraphics = XGraphics.FromPdfPage(SharpPage)) {
-						using (XImage page_image = XImage.FromStream(drawingCanvasBmp)) {
-							PageGraphics.DrawImage(page_image, SharpPage.MediaBox.X1, -1 * SharpPage.MediaBox.Y1, SharpPage.MediaBox.Width, SharpPage.MediaBox.Height);
+						if (drawingCanvasBmp is not null && SharpPage is not null) {
+							using (XGraphics PageGraphics = XGraphics.FromPdfPage(SharpPage)) {
+								using (XImage page_image = XImage.FromStream(drawingCanvasBmp)) {
+									PageGraphics.DrawImage(page_image, SharpPage.MediaBox.X1, -1 * SharpPage.MediaBox.Y1, SharpPage.MediaBox.Width, SharpPage.MediaBox.Height);
+								}
+							}
 						}
-					}
+					}));
 				}
+
+				LoadingWindow saveProgress = new LoadingWindow(SavePDFPage, sharpPdfDoc.PageCount);
+				saveProgress.ShowDialog();
+				pdfDoc?.Dispose();
+
+				try {
+					sharpPdfDoc.Save(out_path);
+					pdfDoc = PdfiumDoc.Load(out_path);
+
+					if (sharpPdfDocStream != null) 
+						sharpPdfDocStream.Dispose();
+
+					if (sharpPdfDoc != null) 
+						sharpPdfDoc.Close();
+
+					byte[] pdfBytes = File.ReadAllBytes(currentFile);
+					sharpPdfDocStream = new MemoryStream(pdfBytes);
+					sharpPdfDoc = PdfReader.Open(sharpPdfDocStream, PdfDocumentOpenMode.Modify);
+				}
+				catch (Exception error) {
+					Error.RaiseError($"ERROR WITH REOPENING PDF: \n{ error.Message }", "Error with opening PDF");
+				}
+
+				Globals.lastSave = DateTime.Now;
 			}
-
-			LoadingWindow saveProgress = new LoadingWindow(SavePDFPage, sharpPdfDoc.PageCount);
-			saveProgress.ShowDialog();
-
-			sharpPdfDoc.Save(out_path);
-			Globals.lastSave = DateTime.Now;
+			else {
+				throw new Exception("Failed to save");
+			}
 		}
-		else {
-			Error.RaiseError("Error - unable to save your current file.", "Save error");
+		catch (Exception error) {
+			Error.RaiseError($"Error - unable to save your current file.\n{error.Message}", "Save error");
 		}
 	}
 

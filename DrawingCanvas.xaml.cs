@@ -1,5 +1,7 @@
 using System.Windows.Controls;
+using System.Xml;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Ink;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -152,7 +154,9 @@ public partial class DrawingCanvas : Grid {
 	}
 
 	public MemoryStream RenderToBitmap() {
-		this.Arrange(new Rect(new Size(this.ActualWidth, this.ActualHeight)));
+		//DrawingCanvas selfCopy = (DrawingCanvas) XamlReader.Load(XmlReader.Create(new StringReader(XamlWriter.Save(this))));
+		//((StackPanel) this.Parent).Children.Add(selfCopy);
+		/*this.Arrange(new Rect(new Size(this.ActualWidth, this.ActualHeight)));
 		this.UpdateLayout();
 
 		RenderTargetBitmap renderBitmap = new RenderTargetBitmap(
@@ -163,10 +167,29 @@ public partial class DrawingCanvas : Grid {
 			PixelFormats.Pbgra32
 		);
 
-		renderBitmap.Render(this);
+		renderBitmap.Render(this);*/
+
+		Rect bounds = VisualTreeHelper.GetDescendantBounds(this);
+		double dpi = 96.0;
+
+		RenderTargetBitmap rtb = new RenderTargetBitmap(
+			(int)bounds.Width,
+			(int)bounds.Height,
+			dpi, dpi,
+			PixelFormats.Pbgra32
+		);
+
+		DrawingVisual dv = new DrawingVisual();
+		using (var ctx = dv.RenderOpen()) {
+			VisualBrush brush = new VisualBrush(this);
+			ctx.DrawRectangle(brush, null, new Rect(new Point(), bounds.Size));
+		}
+		rtb.Render(dv);
+
+		//((StackPanel) this.Parent).Children.Remove(selfCopy);
 		MemoryStream stream = new MemoryStream();
 		PngBitmapEncoder encoder = new PngBitmapEncoder();
-		encoder.Frames.Add(BitmapFrame.Create(renderBitmap));
+		encoder.Frames.Add(BitmapFrame.Create(rtb));
 		encoder.Save(stream);
 		stream.Position = 0;
 
