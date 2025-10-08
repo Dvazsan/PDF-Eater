@@ -39,7 +39,19 @@ public partial class MainWindow : Window {
 		PagesPanelScrollViewer.CanContentScroll = false;
 		FlyoutCreator.CreateColorFlyout(ref colorPopup);
 		FlyoutCreator.CreateThicknessFlyout(ref thicknessPopup);
-		Closing += OnClose;
+		this.Closing += OnClose;
+		this.IsManipulationEnabled = true;
+		this.ManipulationDelta += PagesPanel_OnManipulationDelta;
+		this.TouchDown += Window_TouchEvent;
+		this.TouchUp += Window_TouchEvent;
+		this.TouchMove += Window_TouchEvent;
+		this.PreviewTouchDown += Window_TouchEvent;
+		this.PreviewTouchUp += Window_TouchEvent;
+		this.PreviewTouchMove += Window_TouchEvent;
+	}
+
+	private void Window_TouchEvent(object? sender, TouchEventArgs e) {
+		this.CaptureTouch(e.TouchDevice);
 	}
 
 	private void OnClose(object? sender, CancelEventArgs e) {
@@ -60,6 +72,18 @@ public partial class MainWindow : Window {
 		if (sharpPdfDoc != null) 
 			sharpPdfDoc.Close();
 	}
+
+	private void PagesPanel_OnManipulationDelta(object? sender, ManipulationDeltaEventArgs e) {
+		double scaleDelta = e.DeltaManipulation.Scale.X;
+
+		double newScale = PagesPanelZoomTransform.ScaleX * scaleDelta;
+		newScale = Math.Max(0.1, Math.Min(10.0, newScale));
+
+		PagesPanelZoomTransform.ScaleX = newScale;
+		PagesPanelZoomTransform.ScaleY = newScale;
+		e.Handled = true;
+	}
+
 
 	private void PagesPanel_OnMouseWheel(object sender, MouseWheelEventArgs e) {
 		if (Keyboard.Modifiers == ModifierKeys.Control) {
