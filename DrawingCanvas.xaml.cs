@@ -1,7 +1,5 @@
 using System.Windows.Controls;
-using System.Xml;
 using System.Windows.Input;
-using System.Windows.Markup;
 using System.Windows.Ink;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -13,6 +11,8 @@ namespace PdfEater;
 
 public partial class DrawingCanvas : Grid {
 	private Line? line;
+	private bool isErasing = false;
+
 	private DrawingAttributes currentDrawingAttrs =
 		new DrawingAttributes {
 			Color = Globals.selectedColor.Color,
@@ -38,10 +38,10 @@ public partial class DrawingCanvas : Grid {
 		Globals.lastWrite = DateTime.Now;
 		penColor = Globals.selectedColor.Color;
 		penSize = Globals.selectedThickness;
+		isErasing = erasing;
 
-		if (Globals.IsRuling()) {
-			if (!erasing)
-				inkCanvas.EditingMode = InkCanvasEditingMode.None;
+		if (Globals.IsRuling() && !isErasing) {
+			inkCanvas.EditingMode = InkCanvasEditingMode.None;
 		}
 	}
 
@@ -59,7 +59,7 @@ public partial class DrawingCanvas : Grid {
 		prepareDrawingMode(e.StylusDevice.Inverted);
 		if (e.StylusDevice.TabletDevice.Type == TabletDeviceType.Touch)
 			return;
-		if (Globals.IsRuling()) {
+		if (Globals.IsRuling() && !isErasing) {
 			if (!isTouchEvent(e.StylusDevice))
 				StartLine(e.GetPosition(this));
 		} 
@@ -71,7 +71,7 @@ public partial class DrawingCanvas : Grid {
 
 	private void InkCanvas_StylusOutOfRange(object sender, StylusEventArgs e) {
 		prepareDrawingMode();
-		if (Globals.IsRuling()) 
+		if (Globals.IsRuling() && !isErasing) 
 			FinishLine();
 		else
 			inkCanvas.EditingMode = InkCanvasEditingMode.Ink;
@@ -80,7 +80,7 @@ public partial class DrawingCanvas : Grid {
 	private void InkCanvas_StylusMove(object sender, StylusEventArgs e) {
 		prepareDrawingMode();
 		if (Globals.IsRuling()) 
-			if (!isTouchEvent(e.StylusDevice))
+			if (!isTouchEvent(e.StylusDevice) && !isErasing)
 				ContinueLine(e.GetPosition(this));
 		else {
 			if (e.StylusDevice.Inverted)
