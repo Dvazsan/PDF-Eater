@@ -3,3 +3,4 @@ obj/**
 test.pdf
 Assets/**
 !Assets/Icons.xaml
+./program-icon.png

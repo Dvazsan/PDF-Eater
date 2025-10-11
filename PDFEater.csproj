@@ -9,6 +9,7 @@
     <Nullable>enable</Nullable>
 	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
 	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+	<ApplicationIcon>program-icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
