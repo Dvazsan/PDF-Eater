@@ -75,6 +75,12 @@ public partial class MainWindow : Window {
 
 	private void PagesPanel_OnManipulationDelta(object? sender, ManipulationDeltaEventArgs e) {
 		double scaleDelta = e.DeltaManipulation.Scale.X;
+		double newScroll = PagesPanelScrollViewer.VerticalOffset - e.DeltaManipulation.Translation.Y;
+
+		if (newScroll > 0) 
+			PagesPanelScrollViewer.ScrollToVerticalOffset(newScroll);
+		else
+			PagesPanelScrollViewer.ScrollToVerticalOffset(0);
 
 		double newScale = PagesPanelZoomTransform.ScaleX * scaleDelta;
 		newScale = Math.Max(0.1, Math.Min(10.0, newScale));

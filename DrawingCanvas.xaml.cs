@@ -137,7 +137,11 @@ public partial class DrawingCanvas : Grid {
 		inkCanvas.EditingMode = InkCanvasEditingMode.None;
 
 		line.X2 = position.X;
-		line.Y2 = position.Y;
+
+		if (Globals.sketchSnapping)
+			line.Y2 = line.Y1;
+		else
+			line.Y2 = position.Y;
 	}
 
 	private void FinishLine() {

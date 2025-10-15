@@ -19,5 +19,6 @@ public static class Globals {
 
 	public static List<Color> colorOptions = new List<Color>([ Colors.Black, Colors.Blue, Colors.Red, Colors.Green ]);
 	public static SolidColorBrush selectedColor = new SolidColorBrush(Brushes.Black.Color);
+	public static bool sketchSnapping = false;
 }
 
